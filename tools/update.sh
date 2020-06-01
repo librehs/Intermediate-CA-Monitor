@@ -33,3 +33,4 @@ fi
 echo "Pushing to git"
 git add -A
 git commit -m "Update for ${YEAR}/${MONTH}"
+git push origin master
