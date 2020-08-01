@@ -2,20 +2,8 @@
 
 MONTH=$(date +%m)
 YEAR=$(date +%Y)
-
-if [ $MONTH == "01" ]
-then
-    LASTYEAR=$((YEAR - 1))
-    LASTMONTH=12
-else
-    LASTYEAR=$YEAR
-    if [ $MONTH -le "10" ]
-    then
-        LASTMONTH=0$((MONTH - 1))
-    else
-        LASTMONTH=$((MONTH - 1))
-    fi
-fi
+LASTMONTH=$(date --date='-1 month' +%m)
+LASTYEAR=$(date --date='-1 month' +%Y)
 
 echo "Fetching certificates for ${YEAR}/${MONTH}"
 mkdir -p data/${YEAR}
