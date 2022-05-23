@@ -1,0 +1,31 @@
+name: Update CA Lists
+
+on:
+  push:
+    branches:
+      - master
+  schedule:
+    # */1 1:00 (UTC) every month
+    - cron: "0 1 1 * *"
+
+jobs:
+  up:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          persist-credentials: false
+
+      - name: Update
+        run: |
+          git config --local user.name "LibreHouse Bot"
+          git config --local user.email "62085040+librehsbot@users.noreply.github.com"
+          bash tools/update.sh
+
+      - name: Push changes
+        uses: ad-m/github-push-action@v0.6.0
+        # Pushes by GITHUB_TOKEN will NOT trigger the workflow again.
+        with:
+          branch: master
+          github_token: ${{ secrets.GITHUB_TOKEN }}
