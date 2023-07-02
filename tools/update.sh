@@ -7,8 +7,8 @@ LASTYEAR=$(date --date='-1 month' +%Y)
 
 echo "Fetching certificates for ${YEAR}/${MONTH}"
 mkdir -p data/${YEAR}
-wget https://ccadb-public.secure.force.com/mozilla/PublicAllIntermediateCertsCSV -O data/${YEAR}/${YEAR}-${MONTH}-ica.csv
-wget https://ccadb-public.secure.force.com/mozilla/PublicAllIntermediateCertsWithPEMCSV -O data/${YEAR}/${YEAR}-${MONTH}-ica-withpem.csv
+wget https://ccadb.my.salesforce-sites.com/mozilla/PublicAllIntermediateCertsCSV -O data/${YEAR}/${YEAR}-${MONTH}-ica.csv
+wget https://ccadb.my.salesforce-sites.com/mozilla/PublicAllIntermediateCertsWithPEMCSV -O data/${YEAR}/${YEAR}-${MONTH}-ica-withpem.csv
 echo "Comparing difference from ${LASTYEAR}/${LASTMONTH} to ${YEAR}/${MONTH}"
 LASTFILENAME="data/${LASTYEAR}/${LASTYEAR}-${LASTMONTH}-ica.csv"
 if [ -f "$LASTFILENAME" ]
